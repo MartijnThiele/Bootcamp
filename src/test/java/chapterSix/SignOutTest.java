@@ -1,5 +1,6 @@
 package chapterSix;
 
+import Testcases.TestShopScenario;
 import io.github.bonigarcia.wdm.ChromeDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -13,17 +14,18 @@ import java.util.concurrent.TimeUnit;
 /**
  * Created by Martijn on 20-7-2017.
  */
-public class SignOutTest {
+public class SignOutTest extends TestShopScenario{
+
 
     @Test
     public void logInLogOut() {
-        ChromeDriverManager.getInstance().setup();
-        WebDriver driver = new ChromeDriver();
+        //ChromeDriverManager.getInstance().setup();
+        //WebDriver driver = new ChromeDriver();
 
 
         //Go to website and maximize
-        driver.get("https://techblog.polteq.com/testshop/index.php");
-        driver.manage().window().maximize();
+        //driver.get("https://techblog.polteq.com/testshop/index.php");
+        //driver.manage().window().maximize();
 
         //Login with credentials
         driver.findElement(By.className("login")).click();
@@ -41,6 +43,6 @@ public class SignOutTest {
         Assertions.assertThat(driver.findElement(By.className("page-heading")).getText()).as("Authentication not available").isEqualTo("AUTHENTICATION");
 
         //Close browser
-        driver.quit();
+        //driver.quit();
     }
 }
