@@ -40,7 +40,7 @@ public class SignOutTest extends TestShopScenario{
         driver.findElement(By.className("logout")).click();
 
         //Validate logout
-        Assertions.assertThat(driver.findElement(By.className("page-heading")).getText()).as("Authentication not available").isEqualTo("AUTHENTICATION");
+        Assertions.assertThat(driver.findElement(By.className("page-heading")).getText()).as("AuthenticationPage not available").isEqualTo("AUTHENTICATION");
 
         //Close browser
         //driver.quit();
