@@ -23,7 +23,7 @@ public class DeleteWishListTest extends TestShopScenario {
         Homepage homepage = new Homepage(driver);
         homepage.clickAuthenticationPage();
 
-        //Logs in with provided credentials (lands on "my account" page)
+        //Asserts that Authentication page is available and logs in with provided credentials (lands on "my account" page)
         AuthenticationPage authenticationpage = new AuthenticationPage(driver);
         Assertions.assertThat(authenticationpage.verifiyPage()).as("You don't seem to be on the right page 'Authentication page' ").isTrue();
         authenticationpage.loginToAccount("martijn@thiele.com", "1qazxsw2");
@@ -44,7 +44,7 @@ public class DeleteWishListTest extends TestShopScenario {
             System.out.println("!! The list you were trying to remove was not in the table, an attempt has been made to create it so the test could proceed !!");
         }
 
-        Assertions.assertThat(mywishlistspage.isWishlistAvailable(listToAssert)).as("The list you were trying to delete did not exist, and attempting to create it failed ").isTrue();
+        Assertions.assertThat(mywishlistspage.isWishlistAvailable(listToAssert)).as("The list you were trying to delete did not exist, and an attempt to create it failed ").isTrue();
 
         //Deletes the chosen list
         mywishlistspage.deleteWishlistsEntry(listToAssert);

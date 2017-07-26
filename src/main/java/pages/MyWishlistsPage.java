@@ -5,14 +5,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.Select;
-import org.testng.Assert;
-import org.openqa.selenium.Keys;
-
 import java.util.List;
 
 /**
- * Created by Gebruiker on 23-7-2017.
+ * Created by Martijn on 23-7-2017.
  */
 public class MyWishlistsPage {
 
@@ -47,6 +43,7 @@ public class MyWishlistsPage {
                 return true;
 
             }
+
         }
         return false;
     }
@@ -63,6 +60,12 @@ public class MyWishlistsPage {
                 // If the sValue matches with the description, the element in the seventh column of the row will be clicked
                 driver.findElement(By.xpath(".//tr[" + i + "]/td[7]/a/i")).click();
                 driver.switchTo().alert().accept();
+//                try {
+//                    Thread.sleep(10000);
+//                } catch(InterruptedException ex) {
+//                    Thread.currentThread().interrupt();
+//                }
+//                driver.navigate().refresh();
 
             }
 
