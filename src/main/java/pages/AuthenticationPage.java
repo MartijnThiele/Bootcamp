@@ -9,7 +9,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 
 /**
- * Created by Gebruiker on 21-7-2017.
+ * Created by Martijn on 21-7-2017.
  */
 public class AuthenticationPage {
     private WebDriver driver;
@@ -26,6 +26,13 @@ public class AuthenticationPage {
         //This call sets the WebElements
         PageFactory.initElements(driver, this);
     }
+
+    public boolean verifiyPage(){
+    if (emailTextField.isDisplayed());
+        return true;
+    }
+
+
     public void loginToAccount(String email, String password){
         emailTextField.sendKeys(email);
         passwordTextField.sendKeys(password);

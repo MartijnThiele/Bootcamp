@@ -25,6 +25,11 @@ public class MyAccountPage {
         PageFactory.initElements(driver, this);
     }
 
+    public boolean verifiyPage(){
+        if (myWishlistsButton.isDisplayed());
+        return true;
+    }
+
     public void goToMyWishlistsPage(){
         myWishlistsButton.click();
     }

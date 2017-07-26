@@ -9,16 +9,16 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.openqa.selenium.Keys;
 
+import java.util.List;
+
 /**
  * Created by Gebruiker on 23-7-2017.
  */
 public class MyWishlistsPage {
 
 
-
     private WebDriver driver;
-            @FindBy(css = "hier_komt_een_locator_waarin_de_namen_van _wishlists_terg_te_vinden_moeten_zijn") //nog uitzoeken hoe je een locator bouwt die te vergelijken is met een deel van de totel van een wishlist
-            WebElement checkForWishListName;
+
             @FindBy(xpath = ".//*[@id='name']")
             WebElement enterNewWishlistTextfield;
             @FindBy(xpath = ".//*[@id='submitWishlist']")
@@ -31,22 +31,50 @@ public class MyWishlistsPage {
         PageFactory.initElements(driver, this);
     }
 
-    public void deleteWishlistsEntry (String sRowValue) {
+    public boolean verifiyPage() {
+        if (enterNewWishlistTextfield.isDisplayed()) ;
+        return true;
+    }
 
-        //This loop finds the first row which' title matches sRowvalue
-        for (int i = 1; i <= 5; i++) {
-            String sValue = null;
-            sValue = driver.findElement(By.xpath(".//tr[" + i + "]/td[1]")).getText();
-            if (sValue.equalsIgnoreCase(sRowValue)) {
-                // If the sValue match with the description, it will initiate one more inner loop for all the columns of 'i' row
-                driver.findElement(By.xpath(".//tr[" + i + "]/td[7]/a/i")).click();
-                driver.switchTo().alert().accept();
+    public Boolean isWishlistAvailable(String nameToAssert){
+        //This list gets the number of rows from the table
+        List<WebElement> rows = driver.findElements(By.xpath(".//tr"));
+
+        //This loop finds the first row which' title matches sRowValue
+        for (int i = 1; i < rows.size(); i++) {
+            String sValue = driver.findElement(By.xpath(".//tr[" + i + "]/td[1]")).getText();
+            if (sValue.equalsIgnoreCase(nameToAssert)) {
+                return true;
+
             }
         }
+        return false;
     }
+
+    public void deleteWishlistsEntry (String sRowValue) {
+
+        //This list gets the number of rows from the table
+        List<WebElement> rows = driver.findElements(By.xpath(".//tr"));
+
+        //This loop finds the first row which' title matches sRowValue
+        for (int i = 1; i < rows.size(); i++) {
+            String sValue = driver.findElement(By.xpath(".//tr[" + i + "]/td[1]")).getText();
+            if (sValue.equalsIgnoreCase(sRowValue)) {
+                // If the sValue matches with the description, the element in the seventh column of the row will be clicked
+                driver.findElement(By.xpath(".//tr[" + i + "]/td[7]/a/i")).click();
+                driver.switchTo().alert().accept();
+
+            }
+
+
+        }
+
+    }
+
     public void createNewWishlist(String title){
         enterNewWishlistTextfield.sendKeys(title);
         saveNewWishlistButton.click();
+
 
     }
 }

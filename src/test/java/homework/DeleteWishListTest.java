@@ -12,35 +12,50 @@ import java.awt.*;
 import java.awt.Robot;
 
 /**
- * Created by Gebruiker on 23-7-2017.
+ * Created by Martijn on 23-7-2017.
  */
 public class DeleteWishListTest extends TestShopScenario {
 
     @Test
     public void deleteWishlist(){
 
-        //ga naar de login pagina vanuit de homepage
+        //Goes to login page from homepage
         Homepage homepage = new Homepage(driver);
         homepage.clickAuthenticationPage();
 
-        //log in met opgegeven credentials (land op my account pagina)
+        //Logs in with provided credentials (lands on "my account" page)
         AuthenticationPage authenticationpage = new AuthenticationPage(driver);
+        Assertions.assertThat(authenticationpage.verifiyPage()).as("You don't seem to be on the right page 'Authentication page' ").isTrue();
         authenticationpage.loginToAccount("martijn@thiele.com", "1qazxsw2");
 
-        //ga naar de my wishlist pagina vanuit de my account pagina
+        //Goes to wishlist page from my account page
         MyAccountPage myaccountpage = new MyAccountPage(driver);
+        Assertions.assertThat(myaccountpage.verifiyPage()).as("You don't seem to be on the right page 'My account page' ").isTrue();
         myaccountpage.goToMyWishlistsPage();
 
-        //verwijder een wistlist uit de lijst
+        //Asserts that the chosen list is there, and creates it if it is not
+        String listToAssert = "Feel the pain";
         MyWishlistsPage mywishlistspage = new MyWishlistsPage(driver);
-        mywishlistspage.deleteWishlistsEntry("Feel the pain");
-
-        //verifieer dat de lijst verdwenen is (deze assertation werkt nog niet, asserteren op nog te creeren dynamische locator)
-        //Assertions.assertThat(mywishlistspage.getWishlistTitle()).isNotEqualTo("Spinning round round");
+        Assertions.assertThat(mywishlistspage.verifiyPage()).as("You don't seem to be on the right page 'My wishlists page' ").isTrue();
 
 
-        //voeg de lijst opnieuw toe (zodat hij later opnieuw te verwijderen is)
-        mywishlistspage.createNewWishlist("Feel the Pin");
+        if (mywishlistspage.isWishlistAvailable(listToAssert).equals(false)){
+            mywishlistspage.createNewWishlist(listToAssert);
+            System.out.println("!! The list you were trying to remove was not in the table, an attempt has been made to create it so the test could proceed !!");
+        }
+
+        Assertions.assertThat(mywishlistspage.isWishlistAvailable(listToAssert)).as("The list you were trying to delete did not exist, and attempting to create it failed ").isTrue();
+
+        //Deletes the chosen list
+        mywishlistspage.deleteWishlistsEntry(listToAssert);
+
+        //Verifies that list has been deleted
+        homepage.clickMyAccountPage();
+        myaccountpage.goToMyWishlistsPage();
+        Assertions.assertThat(mywishlistspage.isWishlistAvailable(listToAssert)).as("The list you tried to delete is still there").isFalse();
+
+        //Adds the list back to the wishlist table, so that it can be deleted again
+        mywishlistspage.createNewWishlist(listToAssert);
 
     }
 

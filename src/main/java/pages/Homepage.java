@@ -18,6 +18,8 @@ public class Homepage {
     WebElement goToContactPage;
     @FindBy(css = ".login")
     WebElement goToAuthenticationPage;
+    @FindBy(css = ".account>span")
+    WebElement goToAccountPage;
 
     public Homepage(WebDriver driver) {
         this.driver = driver;
@@ -28,10 +30,17 @@ public class Homepage {
     }
 
     public void clickContactPage() {
+
         goToContactPage.click();
     }
 
     public void clickAuthenticationPage() {
+
         goToAuthenticationPage.click();
+    }
+    public void clickMyAccountPage(){
+
+        goToAccountPage.click();
+
     }
 }

@@ -6,16 +6,15 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
-import org.testng.Assert;
 
 
 /**
- * Created by Gebruiker on 21-7-2017.
+ * Created by Martijn on 21-7-2017.
  */
 public class ContactUsPage {
     private WebDriver driver;
     @FindBy(css = "input#email") //# is voor ID, id = email had ook gekund, maar is in uitgebreide situaties soms niet uniek genoeg
-            WebElement emailTextField;
+    WebElement emailTextField;
     @FindBy(css = "input#id_order")
     WebElement idOrderTextField;
     @FindBy(css = "textarea#message")
