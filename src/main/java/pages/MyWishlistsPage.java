@@ -48,30 +48,34 @@ public class MyWishlistsPage {
         return false;
     }
 
-    public void deleteWishlistsEntry (String sRowValue) {
+    public void deleteWishlistsEntry (String sRowValue, String sColumnValue) {
 
         //This list gets the number of rows from the table
         List<WebElement> rows = driver.findElements(By.xpath(".//tr"));
+        List<WebElement> columns = driver.findElements(By.xpath(".//tr/th"));
 
         //This loop finds the first row which' title matches sRowValue
         for (int i = 1; i < rows.size(); i++) {
-            String sValue = driver.findElement(By.xpath(".//tr[" + i + "]/td[1]")).getText();
-            if (sValue.equalsIgnoreCase(sRowValue)) {
-                // If the sValue matches with the description, the element in the seventh column of the row will be clicked
-                driver.findElement(By.xpath(".//tr[" + i + "]/td[7]/a/i")).click();
-                driver.switchTo().alert().accept();
-//                try {
-//                    Thread.sleep(10000);
-//                } catch(InterruptedException ex) {
-//                    Thread.currentThread().interrupt();
-//                }
-//                driver.navigate().refresh();
+            String rowValue = driver.findElement(By.xpath(".//tr[" + i + "]/td[1]")).getText();
+            if (rowValue.equalsIgnoreCase(sRowValue)) {
+
+                for (int j = 1; j <= columns.size(); j++) {
+                    String columnValue = driver.findElement(By.xpath(".//tr/th[" + j + "]")).getText();
+                    System.out.println(columnValue);
+                    if (columnValue.equalsIgnoreCase(sColumnValue)) {
+
+                        // If the sValue matches with the description, the element in the seventh column of the row will be clicked
+                        driver.findElement(By.xpath(".//tr[" + i + "]/td[" + j + "]/a/i")).click();
+                        driver.switchTo().alert().accept();
+                        break;
+
+                    }
+
+
+                }
 
             }
-
-
         }
-
     }
 
     public void createNewWishlist(String title){

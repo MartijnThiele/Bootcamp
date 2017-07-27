@@ -47,7 +47,7 @@ public class DeleteWishListTest extends TestShopScenario {
         Assertions.assertThat(mywishlistspage.isWishlistAvailable(listToAssert)).as("The list you were trying to delete did not exist, and an attempt to create it failed ").isTrue();
 
         //Deletes the chosen list
-        mywishlistspage.deleteWishlistsEntry(listToAssert);
+        mywishlistspage.deleteWishlistsEntry(listToAssert, "Delete");
 
         //Verifies that list has been deleted
         homepage.clickMyAccountPage();
