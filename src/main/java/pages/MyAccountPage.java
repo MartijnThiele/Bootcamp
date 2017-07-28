@@ -16,6 +16,9 @@ public class MyAccountPage {
     private WebDriver driver;
     @FindBy(css = ".lnk_wishlist>a>span")
     WebElement myWishlistsButton;
+    @FindBy(css = ".account>span")
+    WebElement myAccountName;
+
 
 
     public MyAccountPage(WebDriver driver) {
@@ -24,6 +27,11 @@ public class MyAccountPage {
         //This call sets the WebElements
         PageFactory.initElements(driver, this);
     }
+    public String accountName(){
+        return myAccountName.getText();
+    }
+
+
 
     public boolean verifiyPage(){
         if (myWishlistsButton.isDisplayed());

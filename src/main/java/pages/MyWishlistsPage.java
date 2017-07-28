@@ -61,7 +61,6 @@ public class MyWishlistsPage {
 
                 for (int j = 1; j <= columns.size(); j++) {
                     String columnValue = driver.findElement(By.xpath(".//tr/th[" + j + "]")).getText();
-                    System.out.println(columnValue);
                     if (columnValue.equalsIgnoreCase(sColumnValue)) {
 
                         // If the sValue matches with the description, the element in the seventh column of the row will be clicked
@@ -76,6 +75,9 @@ public class MyWishlistsPage {
 
             }
         }
+        //Wait for element not be stale
+        //rows = driver.findElements(By.xpath(".//tr"));
+        //Assert wishlist gone
     }
 
     public void createNewWishlist(String title){

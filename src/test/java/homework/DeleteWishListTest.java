@@ -1,15 +1,9 @@
 package homework;
 
 import Testcases.TestShopScenario;
-import com.sun.glass.ui.*;
 import org.assertj.core.api.Assertions;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.testng.annotations.Test;
 import pages.*;
-
-import java.awt.*;
-import java.awt.Robot;
 
 /**
  * Created by Martijn on 23-7-2017.

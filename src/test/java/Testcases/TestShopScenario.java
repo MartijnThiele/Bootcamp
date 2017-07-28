@@ -1,5 +1,8 @@
 package Testcases;
 
+import Browser.BrowserFactoryAdvanced;
+import Browser.BrowserFactoryBasic;
+import Browser.BrowserFactoryMedior;
 import io.github.bonigarcia.wdm.ChromeDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -20,15 +23,15 @@ public class TestShopScenario {
     @BeforeMethod
     public void setUp(){
         ChromeDriverManager.getInstance().setup();
-        driver = new ChromeDriver();
+        driver = BrowserFactoryAdvanced.getDriver(BrowserFactoryAdvanced.Browser.CHROME);
         driver.get("https://techblog.polteq.com/testshop/index.php");
-        driver.manage().window().maximize();
+        //driver.manage().window().maximize();
         Assertions.assertThat(driver.findElement(By.className("ajax_cart_no_product")).isDisplayed());
 
     }
 
-   @AfterMethod
-   public void tearDown(){
-       driver.quit();
-  }
+//   @AfterMethod
+//   public void tearDown(){
+//       driver.quit();
+//  }
 }

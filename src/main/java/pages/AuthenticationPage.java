@@ -27,6 +27,7 @@ public class AuthenticationPage {
         PageFactory.initElements(driver, this);
     }
 
+
     public boolean verifiyPage(){
     if (emailTextField.isDisplayed());
         return true;
