@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding= "UTF-8"?>
+
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="Suite" parallel="none">
+    <test name="FirstTest">
+        <parameter name="email" value="heavylifter@feelthepain.com" />
+        <parameter name="orderID" value="123456" />
+        <parameter name="message" value="testbericht" />
+        <classes>
+            <class name="datadriven.DataDrivenFillInContactFormTest" />
+        </classes>
+    </test>
+    <test name="SecondTest">
+        <parameter name="email" value="hipster@tester.com" />
+        <parameter name="orderID" value="7890" />
+        <parameter name="message" value="nog een testbericht" />
+        <classes>
+            <class name="datadriven.DataDrivenFillInContactFormTest" />
+        </classes>
+    </test>
+    <test name="ThirdTest">
+        <parameter name="email" value="feelfit@nopainnogain.com" />
+        <parameter name="orderID" value="123456" />
+        <parameter name="message" value="testbericht" />
+        <classes>
+            <class name="datadriven.DataDrivenFillInContactFormTest" />
+        </classes>
+    </test>
+    <test name="FourthTest">
+        <parameter name="email" value="test@guru.com" />
+        <parameter name="orderID" value="123456" />
+        <parameter name="message" value="testbericht" />
+        <classes>
+            <class name="datadriven.DataDrivenFillInContactFormTest" />
+        </classes>
+    </test>
+    <test name="FifthTest">
+        <parameter name="email" value="cross@fit.com" />
+        <parameter name="orderID" value="123456" />
+        <parameter name="message" value="testbericht" />
+        <classes>
+            <class name="datadriven.DataDrivenFillInContactFormTest" />
+        </classes>
+    </test>
+</suite>

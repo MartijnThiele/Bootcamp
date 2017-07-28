@@ -74,10 +74,10 @@ public class ContactUsPage {
    public boolean invalidEmail(){
        List<WebElement> wrongEmail = driver.findElements(By.cssSelector(".//*[@class='form-group form-error']/input[@id='email']"));
        if (wrongEmail.size() ==1) {
-           return true;
+           return false;
        }else
 
-           return  false;
+           return  true;
 
    }
    }
