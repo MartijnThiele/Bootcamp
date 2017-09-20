@@ -1,7 +1,6 @@
 package examples;
 
-import Testcases.TestShopScenario;
-import org.assertj.core.api.Assertions;
+import testscenarios.TestShopScenario;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 import pages.*;

@@ -1,6 +1,5 @@
-package Browser;
+package browserfactory;
 
-import com.sun.javafx.geom.Edge;
 import io.github.bonigarcia.wdm.ChromeDriverManager;
 import io.github.bonigarcia.wdm.EdgeDriverManager;
 import io.github.bonigarcia.wdm.FirefoxDriverManager;

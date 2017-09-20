@@ -36,7 +36,7 @@ public class MyWishlistsPage {
         //This list gets the number of rows from the table
         List<WebElement> rows = driver.findElements(By.xpath(".//tr"));
 
-        //This loop finds the first row which' title matches sRowValue
+        //This loop finds the first row which' title matches nameToAssert
         for (int i = 1; i < rows.size(); i++) {
             String sValue = driver.findElement(By.xpath(".//tr[" + i + "]/td[1]")).getText();
             if (sValue.equalsIgnoreCase(nameToAssert)) {
@@ -48,22 +48,23 @@ public class MyWishlistsPage {
         return false;
     }
 
-    public void deleteWishlistsEntry (String sRowValue, String sColumnValue) {
+    public void deleteWishlistsEntry (String sRowValue) {
 
         //This list gets the number of rows from the table
         List<WebElement> rows = driver.findElements(By.xpath(".//tr"));
         List<WebElement> columns = driver.findElements(By.xpath(".//tr/th"));
 
-        //This loop finds the first row which' title matches sRowValue
+        //This loop finds the number of the first row which' title matches sRowValue
         for (int i = 1; i < rows.size(); i++) {
             String rowValue = driver.findElement(By.xpath(".//tr[" + i + "]/td[1]")).getText();
             if (rowValue.equalsIgnoreCase(sRowValue)) {
 
+                //This loop finds the number of the first column which title matches "delete"
                 for (int j = 1; j <= columns.size(); j++) {
                     String columnValue = driver.findElement(By.xpath(".//tr/th[" + j + "]")).getText();
-                    if (columnValue.equalsIgnoreCase(sColumnValue)) {
+                    if (columnValue.equalsIgnoreCase("delete")) {
 
-                        // If the sValue matches with the description, the element in the seventh column of the row will be clicked
+                        // If the required list is found, and it's row has a delete button, it will be clicked
                         driver.findElement(By.xpath(".//tr[" + i + "]/td[" + j + "]/a/i")).click();
                         driver.switchTo().alert().accept();
                         break;

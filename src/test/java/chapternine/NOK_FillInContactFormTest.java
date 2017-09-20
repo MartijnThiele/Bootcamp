@@ -1,12 +1,10 @@
-package ChapterNine;
+package chapternine;
 
-import Testcases.TestShopScenario;
+import testscenarios.TestShopScenario;
 import org.assertj.core.api.Assertions;
 import org.testng.annotations.Test;
-import pages.AuthenticationPage;
 import pages.ContactUsPage;
 import pages.Homepage;
-import pages.MyAccountPage;
 
 /**
  * Created by Gebruiker on 27-7-2017.

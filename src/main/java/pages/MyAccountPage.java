@@ -33,9 +33,12 @@ public class MyAccountPage {
 
 
 
-    public boolean verifiyPage(){
-        if (myWishlistsButton.isDisplayed());
-        return true;
+    public boolean verifyPage() {
+        if (driver.findElements(By.cssSelector(".lnk_wishlist>a>span")).size() != 0) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public void goToMyWishlistsPage(){

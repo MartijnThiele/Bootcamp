@@ -8,6 +8,8 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 
+import java.util.List;
+
 /**
  * Created by Martijn on 21-7-2017.
  */
@@ -28,9 +30,21 @@ public class AuthenticationPage {
     }
 
 
-    public boolean verifiyPage(){
-    if (emailTextField.isDisplayed());
-        return true;
+    public boolean verifiyPageAlternative(){
+        List<WebElement> emailTextFieldAvailable = driver.findElements(By.id("login_form"));
+        if (emailTextFieldAvailable.size() ==1) {
+            return true;
+        }else
+
+            return  false;
+    }
+
+    public boolean verifyPage() {
+        if (driver.findElements(By.id("login_form")).size() != 0) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
 

@@ -1,6 +1,6 @@
 package homework;
 
-import Testcases.TestShopScenario;
+import testscenarios.TestShopScenario;
 import org.assertj.core.api.Assertions;
 import org.testng.annotations.Test;
 import pages.*;
@@ -19,12 +19,12 @@ public class DeleteWishListTest extends TestShopScenario {
 
         //Asserts that Authentication page is available and logs in with provided credentials (lands on "my account" page)
         AuthenticationPage authenticationpage = new AuthenticationPage(driver);
-        Assertions.assertThat(authenticationpage.verifiyPage()).as("You don't seem to be on the right page 'Authentication page' ").isTrue();
+        Assertions.assertThat(authenticationpage.verifyPage()).as("You don't seem to be on the right page 'Authentication page' ").isTrue();
         authenticationpage.loginToAccount("martijn@thiele.com", "1qazxsw2");
 
         //Goes to wishlist page from my account page
         MyAccountPage myaccountpage = new MyAccountPage(driver);
-        Assertions.assertThat(myaccountpage.verifiyPage()).as("You don't seem to be on the right page 'My account page' ").isTrue();
+        Assertions.assertThat(myaccountpage.verifyPage()).as("You don't seem to be on the right page 'My account page' ").isTrue();
         myaccountpage.goToMyWishlistsPage();
 
         //Asserts that the chosen list is there, and creates it if it is not
@@ -41,7 +41,7 @@ public class DeleteWishListTest extends TestShopScenario {
         Assertions.assertThat(mywishlistspage.isWishlistAvailable(listToAssert)).as("The list you were trying to delete did not exist, and an attempt to create it failed ").isTrue();
 
         //Deletes the chosen list
-        mywishlistspage.deleteWishlistsEntry(listToAssert, "Delete");
+        mywishlistspage.deleteWishlistsEntry(listToAssert);
 
         //Verifies that list has been deleted
         homepage.clickMyAccountPage();

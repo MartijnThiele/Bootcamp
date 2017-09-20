@@ -1,7 +1,6 @@
 package datadriven;
 
-import Testcases.TestShopScenario;
-import browserdriven.TestshopScenarioBrowserDriven;
+import testscenarios.TestShopScenario;
 import org.assertj.core.api.Assertions;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;

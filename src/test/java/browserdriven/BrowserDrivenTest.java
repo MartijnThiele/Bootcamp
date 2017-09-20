@@ -1,5 +1,6 @@
 package browserdriven   ;
 
+import testscenarios.TestShopScenarioBrowserDriven;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 import pages.Homepage;
@@ -10,7 +11,7 @@ import pages.Homepage;
  * Created by Gebruiker on 27-7-2017.
  */
 
-public class BrowserDrivenTest extends TestshopScenarioBrowserDriven {
+public class BrowserDrivenTest extends TestShopScenarioBrowserDriven {
 
     @Test
     public void goToLoginPage(){

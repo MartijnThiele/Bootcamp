@@ -1,15 +1,12 @@
-package Browser;
+package browserfactory;
 
-import com.sun.javafx.geom.Edge;
 import io.github.bonigarcia.wdm.ChromeDriverManager;
-import io.github.bonigarcia.wdm.EdgeDriverManager;
 import io.github.bonigarcia.wdm.FirefoxDriverManager;
 import io.github.bonigarcia.wdm.InternetExplorerDriverManager;
 import org.openqa.selenium.Proxy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -17,15 +14,26 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 /**
  * Created by Gebruiker on 27-7-2017.
  */
-public class BrowserFactoryMedior {
-    public static WebDriver getDriver(String browser) {
 
-        switch (browser.toLowerCase()) {
-            case "firefox":
+
+
+public class BrowserFactoryAdvanced {
+
+
+    public enum Browser {
+        CHROME,
+        FIREFOX,
+        IE;
+    }
+
+    public static WebDriver getDriver(Browser selectBrowser) {
+
+        switch (selectBrowser) {
+            case FIREFOX:
                 return getFirefoxDriver();
-            case "ie":
+            case IE:
                 return getIEDriver();
-            case "chrome":
+            case CHROME:
                 return getChromeDriver();
             default:
                 return getChromeDriver();
@@ -48,6 +56,7 @@ public class BrowserFactoryMedior {
         capabilities.setCapability("proxy", proxy);
 
         ChromeOptions options = new ChromeOptions();
+        options.addArguments("user-data-dir=C:\\Users\\Gebruiker\\ChromeDriverProfile");
         options.addArguments("--start-maximized");
         options.addArguments("ignore-certificate-errors");
         capabilities.setCapability("chrome.switches", "--verbose");
