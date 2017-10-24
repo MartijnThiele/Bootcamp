@@ -18,6 +18,8 @@ public class MyAccountPage {
     WebElement myWishlistsButton;
     @FindBy(css = ".account>span")
     WebElement myAccountName;
+    @FindBy(xpath = ".//span[text()='My personal information']")
+    WebElement myPersonalInfoButton;
 
 
 
@@ -31,8 +33,6 @@ public class MyAccountPage {
         return myAccountName.getText();
     }
 
-
-
     public boolean verifyPage() {
         if (driver.findElements(By.cssSelector(".lnk_wishlist>a>span")).size() != 0) {
             return true;
@@ -43,5 +43,9 @@ public class MyAccountPage {
 
     public void goToMyWishlistsPage(){
         myWishlistsButton.click();
+    }
+
+    public void goToMyPersonalInformationPage(){
+        myPersonalInfoButton.click();
     }
 }

@@ -37,7 +37,6 @@ public class Homepage {
     }
 
     //Returns true if user is logged in, false if no user logged in
-
     public boolean isUserLoggedIn() {
     List<WebElement> logoutAvailable = driver.findElements(By.cssSelector(".logout"));
         if (logoutAvailable.size() ==1) {
@@ -48,7 +47,7 @@ public class Homepage {
 
     }
 
-
+    //Checks if a user is logged in and returns the user name if one is
     public String accountName(){
         List<WebElement> logoutAvailable = driver.findElements(By.cssSelector(".logout"));
         if (logoutAvailable.size() ==1) {
@@ -59,13 +58,15 @@ public class Homepage {
 
     }
 
-    public void logout(){
-
-        driver.findElement(By.cssSelector(".logout")).click();
+    //Logs out the user if one is logged in
+    public void logout() {
+        List<WebElement> logoutAvailable = driver.findElements(By.cssSelector(".logout"));
+        if (logoutAvailable.size() == 1) {
+            driver.findElement(By.cssSelector(".logout")).click();
+        }
     }
 
     //These methods are used to navigate to another page
-
     public void clickShoppingCartPage(){
        goToShoppingCartPage.click();
     }
@@ -80,7 +81,6 @@ public class Homepage {
     }
 
     //Returns true if cart is empty, false if cart is filled
-
     public boolean isCartEmpty(){
         String cartquantity = (driver.findElement(By.cssSelector(".ajax_cart_quantity")).getText());
         if (cartquantity.isEmpty()) {
@@ -93,7 +93,6 @@ public class Homepage {
     }
 
     //Returns the number of items in the cart
-
     public int cartQuantity() {
         String cartquantity = (driver.findElement(By.cssSelector(".ajax_cart_quantity")).getText());
         if (cartquantity.isEmpty()) {

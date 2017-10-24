@@ -7,6 +7,9 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
+
+import static java.util.concurrent.TimeUnit.SECONDS;
 
 /**
  * Created by Gebruiker on 14-9-2017.
@@ -15,7 +18,7 @@ public class ShoppingCartPage {
 
     private WebDriver driver;
 
-    @FindBy(xpath = ".//tbody//tr//td//i")
+    @FindBy(xpath = ".//*[@class='icon-trash']")
     WebElement deleteButton;
 
     public ShoppingCartPage(WebDriver driver) {
@@ -58,7 +61,7 @@ public class ShoppingCartPage {
 
                     // If the required list is found, and it's row has a delete button, it will be clicked
                     driver.findElement(By.xpath(".//tbody/tr[" + x + "]/td[" + j + "]//i")).click();
-                    System.out.println(productToDelete + "has been deleted from the shopping cart ");
+                    System.out.println(productToDelete + " has been deleted from the shopping cart ");
                     break;
 
                 }
@@ -68,18 +71,29 @@ public class ShoppingCartPage {
         } else System.out.println(productToDelete + " was not found, nothing has been deleted");
     }
 
-    public void deleteEntireCart() {
+    //This method deletes every item from the cart (using thread sleep to catch delay from delete action)
+    public void deleteEntireCart() throws InterruptedException {
         List<WebElement> rows = driver.findElements(By.xpath(".//tbody//tr"));
 
         for (int i = 1; i <= rows.size(); i++) {
-            System.out.println("rows: " + rows.size());
-            System.out.println("value of i: " + i);
             deleteButton.click();
-            System.out.println("past delete action");
+            Thread.sleep(2000);
 
         }
-        System.out.println("exited loop");
     }
+
+    //This method deletes every item from the cart (re-navigating to basket to catch delay from delete action)
+    public void deleteEntireCart2()  {
+        List<WebElement> rows = driver.findElements(By.xpath(".//tbody//tr"));
+
+        for (int i = 1; i <= rows.size(); i++) {
+            deleteButton.click();
+            driver.findElement(By.xpath(".//*[@title='View my shopping cart']")).click();
+
+
+        }
+    }
+
 }
 
 

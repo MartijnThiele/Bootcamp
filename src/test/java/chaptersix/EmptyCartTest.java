@@ -1,5 +1,6 @@
 package chaptersix;
 
+import org.assertj.core.api.Assertions;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 import pages.Homepage;
@@ -28,10 +29,12 @@ public class EmptyCartTest extends TestShopScenario {
             driver.findElement(By.cssSelector(".sf-with-ul")).click();
         }
 
-        //Goes to the shopping cart page and deletes the first item in the basket
+        //Goes to the shopping cart page and deletes everything from the basket
 
         homepage.clickShoppingCartPage();
-        shoppingCartPage.deleteEntireCart();
+        shoppingCartPage.deleteEntireCart2();
+        Assertions.assertThat(driver.findElement(By.xpath(".//*[@class='alert alert-warning']")).getText()).as("Empty cart message not found").isEqualTo("Your shopping cart is empty.");
+
 
     }
 
